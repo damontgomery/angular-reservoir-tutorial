@@ -6,20 +6,46 @@ import 'rxjs/add/operator/toPromise';
 import { Hero } from './hero';
 // import { HEROES } from './mock-heroes';
 
+// Use OAuth.
+import { OAuthService } from 'angular-oauth2-oidc';
+import { User } from './user';
+import { DrupalHero } from './drupal-hero';
+import { MOCKUSER } from './mock-user';
+
 @Injectable()
 export class HeroService {
   // private heroesUrl: string = 'api/heroes';
   private heroesUrl: string = 'http://local.well.com/jsonapi/node/hero';
 
-  constructor(private http: Http) { }
+  private headers = new Headers({'Content-Type': 'application/vnd.api+json'});
+
+  // For now we're just going to hard code the user object.
+  user: User = MOCKUSER;
+
+  constructor(
+    private http: Http,
+    private oauthService: OAuthService
+  ) {
+    this.oauthService.clientId = 'f4a939b6-0100-4009-a46f-4e5a4faf59cb';
+    this.oauthService.tokenEndpoint = 'http://local.well.com/oauth/token';
+    this.oauthService.dummyClientSecret = 'password';
+
+    this.oauthService.setStorage(sessionStorage);
+
+    this.oauthService.fetchTokenUsingPasswordFlow(this.user.name, this.user.password)
+      .then((resp) => {
+        // Set the header to use the access token.
+        this.headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken());
+      });
+  }
 
   getHeroes(): Promise<Hero[]> {
     // return Promise.resolve(HEROES);
     return this.http.get(this.heroesUrl)
       .toPromise()
-      .then(response => {
+      .then(res => {
         var heroes: Hero[] = [];
-        var data = response.json().data;
+        var data = res.json().data;
 
         heroes = data.map(source => {
           var hero: Hero = new Hero;
@@ -39,9 +65,9 @@ export class HeroService {
 
     return this.http.get(url)
       .toPromise()
-      .then(response => {
+      .then(res => {
         var hero: Hero = new Hero;
-        var data = response.json().data;
+        var data = res.json().data;
 
         hero.id = data.id;
         hero.name = data.attributes.title;
@@ -49,26 +75,49 @@ export class HeroService {
         return hero;
       })
       .catch(this.handleError);
-
-    // return this.getHeroes()
-    //   .then(heroes => heroes.find(hero => hero.id === id));
   }
 
-  private headers = new Headers({'Content-Type': 'application/json'});
-
   create(name: string): Promise<Hero> {
+    let createdHero =   {
+      data: {
+        attributes: {
+          langcode: "en",
+          status: true,
+          title: name,
+        }
+      }
+    };
+
     return this.http
-      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.heroesUrl, JSON.stringify(createdHero), {headers: this.headers})
         .toPromise()
-        .then(res => res.json().data as Hero)
+        .then(res => {
+          let hero: Hero = new Hero;
+          let data = res.json().data;
+
+          hero.id = data.id;
+          hero.name = data.attributes.title;
+
+          return hero;
+        })
         .catch(this.handleError);
   }
 
   update(hero: Hero): Promise<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
 
+    let updatedHero =   {
+      data: {
+        id: hero.id,
+        attributes: {
+          // We are only going to update the name.
+          title: hero.name,
+        }
+      }
+    };
+
     return this.http
-      .put(url, JSON.stringify(hero), {headers: this.headers})
+      .patch(url, JSON.stringify(updatedHero), {headers: this.headers})
       .toPromise()
       .then(() => hero)
       .catch(this.handleError);

@@ -20,7 +20,7 @@ import { HttpModule }           from '@angular/http';
 import { AppRoutingModule }     from './app-routing/app-routing.module';
 
 // OAuthService
-// import { OAuthModule }          from 'angular-oauth2-oidc';
+import { OAuthModule }          from 'angular-oauth2-oidc';
 // import { OAuthService }          from 'angular-oauth2-oidc';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { AppRoutingModule }     from './app-routing/app-routing.module';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    // OAuthModule.forRoot(),
+    OAuthModule.forRoot(),
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   providers: [
