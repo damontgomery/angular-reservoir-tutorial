@@ -4,19 +4,15 @@ import { Headers, Http } from '@angular/http'
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
-// import { HEROES } from './mock-heroes';
 
 // Use OAuth.
 import { OAuthService } from 'angular-oauth2-oidc';
 import { User } from './user';
-import { DrupalHero } from './drupal-hero';
 import { MOCKUSER } from './mock-user';
 
 @Injectable()
 export class HeroService {
-  // private heroesUrl: string = 'api/heroes';
   private heroesUrl: string = 'http://local.well.com/jsonapi/node/hero';
-
   private headers = new Headers({'Content-Type': 'application/vnd.api+json'});
 
   // For now we're just going to hard code the user object.
@@ -26,7 +22,7 @@ export class HeroService {
     private http: Http,
     private oauthService: OAuthService
   ) {
-    this.oauthService.clientId = 'f4a939b6-0100-4009-a46f-4e5a4faf59cb';
+    this.oauthService.clientId = 'd7fca026-1619-400b-92f3-de46c82a6fa9';
     this.oauthService.tokenEndpoint = 'http://local.well.com/oauth/token';
     this.oauthService.dummyClientSecret = 'password';
 
@@ -40,7 +36,6 @@ export class HeroService {
   }
 
   getHeroes(): Promise<Hero[]> {
-    // return Promise.resolve(HEROES);
     return this.http.get(this.heroesUrl)
       .toPromise()
       .then(res => {
