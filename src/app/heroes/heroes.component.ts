@@ -30,14 +30,8 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
-  // Click event handler for list of heroes.
-  // @Output() heroSelected = new EventEmitter();
-
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
-
-    // Send the updated hero outwards.
-    // this.heroSelected.emit(this.selectedHero);
   };
 
   gotoDetail(): void {

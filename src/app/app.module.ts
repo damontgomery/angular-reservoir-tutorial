@@ -21,7 +21,6 @@ import { AppRoutingModule }     from './app-routing/app-routing.module';
 
 // OAuthService
 import { OAuthModule }          from 'angular-oauth2-oidc';
-// import { OAuthService }          from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -37,12 +36,10 @@ import { OAuthModule }          from 'angular-oauth2-oidc';
     AppRoutingModule,
     HttpModule,
     OAuthModule.forRoot(),
-    // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   providers: [
     HeroService,
     HeroSearchService,
-    // OAuthService,
   ],
   bootstrap: [AppComponent]
 })
