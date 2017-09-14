@@ -1,18 +1,25 @@
-# Angular and Acquia Reservoir Tutorial
+# Angular and Acquia Lightning (Content API) Tutorial
 
 This sample code was built to demonstrate the connection between an Angular frontend app and a Drupal backend.
 
-Angular was built using [Angular CLI](https://github.com/angular/angular-cli) and follows along with the [Tour of Heroes Tutorial](https://angular.io/tutorial). Angular CLI was selected for compatibility with OAuth authentication used by Acquia Reservoir.
+Angular was built using [Angular CLI](https://github.com/angular/angular-cli) and follows along with the [Tour of Heroes Tutorial](https://angular.io/tutorial). Angular CLI was selected for compatibility with OAuth authentication used by Acquia Lightning (Content API).
 
-[Acquia Reservoir](https://github.com/acquia/reservoir) is a headless Drupal profile meant to conform to the [JSON API](http://jsonapi.org/) standard and be easy for non-Drupal developers to use.
+[Acquia Lightning (Content API)](https://github.com/acquia/lightning) is a headless Drupal profile meant to conform to the [JSON API](http://jsonapi.org/) standard and be easy for non-Drupal developers to use.
 
-The companion repository [Well](https://github.com/damontgomery/well) is a Drupal project built on Acquia Reservoir, Acquia BLT, and Drupal VM. This combination of tools provides an easy way to install a VM based headless Drupal site that can connect to the Angular app.
+The companion repository [Well](https://github.com/damontgomery/well) is a Drupal project built on Acquia Lightning (Content API), Acquia BLT, and Drupal VM. This combination of tools provides an easy way to install a VM based headless Drupal site that can connect to the Angular app.
 
 If you follow along with the Tour of Heroes Angular tutorial, you will create an application that uses mock services to retrieve and store data. At the end of that tutorial, you might want to connect to a real system. This project hopefully helps with that.
 
 From the end of the tutorial, the next steps were to add an OAuth library, angular-oauth2-oidc. Since Angular CLI supports this library while Angular Quickstart and System JS do not easily. Angular CLI also provides a command line tool for generating scaffolding. See below. I would recommend using this scaffolding tool when following along with the tutorial. This will store files using the Angular CLI best practices.
 
 As a component based system, most of the changes were contained to the `hero.service.ts` which connected previously to the mock service.
+
+## Providing your OAuth Client ID
+If you download this as well as the Well Drupal site, you will need to configure your unique OAuth Client ID.
+
+Log in to Drupal and go to `/admin/config/people/simple_oauth/oauth2_client` to view your client key.
+
+Edit the `this.oauthService.clientId = '7f4ee151-9cd0-48bd-ad3e-79796a23d91f';` setting in `src/app/hero.service.ts` with this key.
 
 ## Development server
 

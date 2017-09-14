@@ -22,7 +22,7 @@ export class HeroService {
     private http: Http,
     private oauthService: OAuthService
   ) {
-    this.oauthService.clientId = 'd7fca026-1619-400b-92f3-de46c82a6fa9';
+    this.oauthService.clientId = '7f4ee151-9cd0-48bd-ad3e-79796a23d91f';
     this.oauthService.tokenEndpoint = 'http://local.well.com/oauth/token';
     this.oauthService.dummyClientSecret = 'password';
 
