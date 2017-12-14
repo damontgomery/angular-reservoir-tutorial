@@ -1,12 +1,12 @@
-# Angular and Acquia Lightning (Content API) Tutorial
+# Angular and Acquia Headless Lightning Tutorial
 
 This sample code was built to demonstrate the connection between an Angular frontend app and a Drupal backend.
 
-Angular was built using [Angular CLI](https://github.com/angular/angular-cli) and follows along with the [Tour of Heroes Tutorial](https://angular.io/tutorial). Angular CLI was selected for compatibility with OAuth authentication used by Acquia Lightning (Content API).
+Angular was built using [Angular CLI](https://github.com/angular/angular-cli) and follows along with the [Tour of Heroes Tutorial](https://angular.io/tutorial). Angular CLI was selected for compatibility with OAuth authentication used by Acquia Headless Lightning.
 
-[Acquia Lightning (Content API)](https://github.com/acquia/lightning) is a headless Drupal profile meant to conform to the [JSON API](http://jsonapi.org/) standard and be easy for non-Drupal developers to use.
+[Acquia Headless Lightning](https://github.com/acquia/headless-lightning) is a headless Drupal profile meant to conform to the [JSON API](http://jsonapi.org/) standard and be easy for non-Drupal developers to use.
 
-The companion repository [Well](https://github.com/damontgomery/well) is a Drupal project built on Acquia Lightning (Content API), Acquia BLT, and Drupal VM. This combination of tools provides an easy way to install a VM based headless Drupal site that can connect to the Angular app.
+The companion repository [Well](https://github.com/damontgomery/well) is a Drupal project built on Acquia Headless Lightning, Acquia BLT, and Drupal VM. This combination of tools provides an easy way to install a VM based headless Drupal site that can connect to the Angular app. The [Well Hero App branch](https://github.com/damontgomery/well/tree/examples/hero-app) contains configuration and code to quickly set up a headless Drupal site that works with this Angular site.
 
 If you follow along with the Tour of Heroes Angular tutorial, you will create an application that uses mock services to retrieve and store data. At the end of that tutorial, you might want to connect to a real system. This project hopefully helps with that.
 
