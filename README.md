@@ -17,7 +17,7 @@ As a component based system, most of the changes were contained to the `hero.ser
 ## Providing your OAuth Client ID
 If you download this as well as the Well Drupal site, you will need to configure your unique OAuth Client ID.
 
-Log in to Drupal and go to `/admin/config/people/simple_oauth/oauth2_client` to view your client key.
+Log in to Drupal and go to `/admin/config/services/consumer` to view your client key.
 
 Edit the `this.oauthService.clientId = '7f4ee151-9cd0-48bd-ad3e-79796a23d91f';` setting in `src/app/hero.service.ts` with this key.
 
